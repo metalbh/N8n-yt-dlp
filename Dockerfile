@@ -22,6 +22,8 @@ COPY --from=tools /usr/local/bin/ffprobe /usr/local/bin/ffprobe
 RUN printf '#!/bin/sh\nexec python3 /ytdlp-lib/yt_dlp "$@"\n' > /usr/bin/yt-dlp \
     && chmod a+rx /usr/bin/yt-dlp \
     && ln -sf /usr/bin/yt-dlp /usr/local/bin/yt-dlp
+# ★ 把常用參數寫進 yt-dlp 設定檔，之後不用再填 Custom Flags
+RUN printf -- '--js-runtimes node:/usr/local/bin/node\n--remote-components ejs:github\n' > /etc/yt-dlp.conf
 ENV PYTHONPATH=/ytdlp-lib
 ENV YT_DLP_PATH=/usr/bin/yt-dlp
 USER node
