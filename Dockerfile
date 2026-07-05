@@ -1,4 +1,3 @@
-cat > Dockerfile << 'EOF'
 FROM n8nio/n8n:2.27.3
 
 USER root
@@ -14,8 +13,3 @@ RUN ffmpeg -version
 ENV YT_DLP_PATH=/usr/local/bin/yt-dlp
 
 USER node
-EOF
-
-git add Dockerfile
-git commit -m "use apt-get (image is debian-based)"
-git push
