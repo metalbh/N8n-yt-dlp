@@ -12,7 +12,7 @@ RUN mkdir -p /bundle \
         $(ls -d /usr/lib/python3.* 2>/dev/null) \
         $(ls /usr/lib/libpython3.*.so* 2>/dev/null)
 
-FROM n8nio/n8n:2.27.3
+FROM n8nio/n8n:2.29.1
 USER root
 COPY --from=tools /bundle/py.tar /tmp/py.tar
 RUN tar -xf /tmp/py.tar -C / && rm /tmp/py.tar
